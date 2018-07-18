@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnAlive : MonoBehaviour {
+public class UnAlive : VoxObject
+{
 
 	// Use this for initialization
 	void Start () {
