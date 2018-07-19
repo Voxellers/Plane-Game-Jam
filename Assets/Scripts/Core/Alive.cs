@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Alive : MonoBehaviour {
+public class Alive : VoxObject
+{
+    float _hp = 0f;
 
     [SerializeField]
     private float healthPoint;
