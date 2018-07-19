@@ -2,15 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Alive : MonoBehaviour {
+public class Alive : VoxObject
+{
+    [SerializeField]
+    private float healthPoint;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public void SetHP(float newHealthPoint)
+    {
+        healthPoint = newHealthPoint;
+        EventByDesiredHealthPoint(healthPoint);
+    }
+    public float GetHP()
+    {
+        return healthPoint;
+    }
+
+    /**
+     * changed name : HPAction -> EventByDesiredHealthPoint
+     * */
+    protected virtual void EventByDesiredHealthPoint(float hp) { }
 }
