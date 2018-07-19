@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Plane : MonoBehaviour {
+public abstract class Plane : Alive {
 
 	// Use this for initialization
 	void Start () {
@@ -13,4 +13,8 @@ public abstract class Plane : MonoBehaviour {
 	void Update () {
 		
 	}
+    override protected void EventByDesiredHealthPoint(float hp) {
+        if (hp <= 0)
+            Destroy(gameObject);
+    }
 }

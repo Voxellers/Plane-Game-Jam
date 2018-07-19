@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPlane : MonoBehaviour {
+public class EnemyPlane : Plane {
 
 	// Use this for initialization
 	void Start () {

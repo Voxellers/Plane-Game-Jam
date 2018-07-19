@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class Alive : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    [SerializeField]
+    private float healthPoint;
+
+    public void SetHP(float newHealthPoint)
+    {
+        healthPoint = newHealthPoint;
+        EventByDesiredHealthPoint(healthPoint);
+    }
+    public float GetHP()
+    {
+        return healthPoint;
+    }
+
+    /**
+     * changed name : HPAction -> EventByDesiredHealthPoint
+     * */
+    protected virtual void EventByDesiredHealthPoint(float hp) { }
 }

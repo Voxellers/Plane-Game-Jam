@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 
+    public float damage;
+    public float lifeTime;
+
 	// Use this for initialization
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        Destroy(gameObject, lifeTime);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            var hpScript = collision.gameObject.GetComponent<Alive>();
+            var hp = hpScript.GetHP();
+            collision.gameObject.GetComponent<Alive>().SetHP(hp - damage);
+            Destroy(gameObject);
+        }
+    }
 }
