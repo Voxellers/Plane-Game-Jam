@@ -35,7 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4211426769574706}
   m_Layer: 0
-  m_Name: PlayerPlane
+  m_Name: PlayerPlane_Old
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
