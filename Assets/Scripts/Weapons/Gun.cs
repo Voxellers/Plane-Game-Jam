@@ -27,8 +27,8 @@ public class Gun : MonoBehaviour {
            var bullet=
                 Instantiate(Bullet, Muzzle.position,
                 Muzzle.rotation);
-           bullet.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shootPower);
-           //bullet.GetComponent<Rigidbody>().AddForce(Muzzle.forward * shootPower);
+           //bullet.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shootPower);
+           bullet.GetComponent<Rigidbody>().AddForce(Muzzle.forward * shootPower);
             lastShootTime = Time.time;
         }
     }

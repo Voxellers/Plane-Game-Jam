@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Alive : MonoBehaviour {
+public class Alive : MonoBehaviour
+{
 
     [SerializeField]
     private float healthPoint;
@@ -20,5 +21,11 @@ public class Alive : MonoBehaviour {
     /**
      * changed name : HPAction -> EventByDesiredHealthPoint
      * */
-    protected virtual void EventByDesiredHealthPoint(float hp) { }
+    protected virtual void EventByDesiredHealthPoint(float hp)
+    {
+        {
+            if (hp <= 0)
+                Destroy(gameObject);
+        }
+    }
 }

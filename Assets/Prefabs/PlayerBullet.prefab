@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 54613919716784630}
   - component: {fileID: 65706928860078738}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: PlayerBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222,3 +222,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   lifeTime: 4
+  targetTag: Enemy

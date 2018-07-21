@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour {
 
     public float damage;
     public float lifeTime;
+    public string targetTag;
 
 	// Use this for initialization
 	void Start () {
@@ -13,7 +14,7 @@ public class Bullet : MonoBehaviour {
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+        if(collision.gameObject.tag == targetTag)
         {
             var hpScript = collision.gameObject.GetComponent<Alive>();
             var hp = hpScript.GetHP();

@@ -13,8 +13,5 @@ public abstract class Plane : Alive {
 	void Update () {
 		
 	}
-    override protected void EventByDesiredHealthPoint(float hp) {
-        if (hp <= 0)
-            Destroy(gameObject);
-    }
+    
 }

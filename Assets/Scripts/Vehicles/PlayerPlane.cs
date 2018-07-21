@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerPlane : MonoBehaviour {
+public class PlayerPlane : Plane {
 
 	// Use this for initialization
 	void Start () {

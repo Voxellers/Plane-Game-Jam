@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyTruck : MonoBehaviour {
+public class EnemyTruck : Alive {
 
 	// Use this for initialization
 	void Start () {
