@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 50931928207795942}
   - component: {fileID: 114477030466200596}
   - component: {fileID: 114775829877835212}
+  - component: {fileID: 61359308158134142}
   m_Layer: 0
   m_Name: PlayerPlane(Physics)
   m_TagString: Player
@@ -39,7 +40,6 @@ GameObject:
   - component: {fileID: 4333699136447960}
   - component: {fileID: 33377924033097884}
   - component: {fileID: 23026101097153552}
-  - component: {fileID: 65399665731326530}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -66,7 +66,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1071070614848220}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -704.3, y: -100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -136,18 +136,31 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!65 &65399665731326530
-BoxCollider:
+--- !u!61 &61359308158134142
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1763328754833428}
+  m_GameObject: {fileID: 1071070614848220}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 10, y: 5}
+  m_EdgeRadius: 0
 --- !u!114 &114477030466200596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -170,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b68a6e93e605ae24eb30ff6126d3aab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthPoint: 0
   m_MaxEnginePower: 40
   m_Lift: 0.002
   m_ZeroLiftSpeed: 300
@@ -178,5 +192,5 @@ MonoBehaviour:
   m_AirBrakesEffect: 3
   m_ThrottleChangeSpeed: 0.3
   m_DragIncreaseFactor: 0.001
-  m_torqueFactor: 0.1
+  m_torqueFactor: 3
   currentForwardSpeed: 0

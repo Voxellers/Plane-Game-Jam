@@ -106,6 +106,7 @@ public abstract class Plane : Alive {
             // calculate current pitch angle
             var localFlatForward = transform.InverseTransformDirection(flatForward);
             PitchAngle = Mathf.Atan2(localFlatForward.y, localFlatForward.x);
+            //Debug.Log("PitchAngle: " + PitchAngle);
         }
     }
 
@@ -147,19 +148,28 @@ public abstract class Plane : Alive {
         if (m_Rigidbody.velocity.magnitude > 0)
         {
             // compare the direction we're pointing with the direction we're moving:
-            m_AeroFactor = Vector3.Dot(transform.right, m_Rigidbody.velocity.normalized);
+            m_AeroFactor = Vector2.Dot(transform.right, m_Rigidbody.velocity.normalized);
+            //Debug.Log("Transform.Right: " + transform.right);
+            //Debug.Log("Rigidbody Velocity: " + m_Rigidbody.velocity.normalized);
+            //Debug.Log("Dot: " + Vector2.Dot(transform.right, m_Rigidbody.velocity.normalized));
             // multipled by itself results in a desirable rolloff curve of the effect
             m_AeroFactor *= m_AeroFactor;
+            Debug.Log("AeroFactor: " + m_AeroFactor);
             // Finally we calculate a new velocity by bending the current velocity direction towards
             // the the direction the plane is facing, by an amount based on this aeroFactor
-            var newVelocity = Vector3.Lerp(m_Rigidbody.velocity, transform.right * ForwardSpeed,
+            var newVelocity = Vector2.Lerp(m_Rigidbody.velocity, transform.right * ForwardSpeed,
                                            m_AeroFactor * ForwardSpeed * m_AerodynamicEffect * Time.deltaTime);
+            //Debug.Log("prevVelo: " + m_Rigidbody.velocity);
             m_Rigidbody.velocity = newVelocity;
+            //Debug.Log("newVelo: " + m_Rigidbody.velocity);
 
             // also rotate the plane towards the direction of movement - this should be a very small effect, but means the plane ends up
             // pointing downwards in a stall
+            Quaternion lookRotation = Quaternion.LookRotation(m_Rigidbody.velocity, transform.up);
+
+            Quaternion slerpB = new Quaternion(0, 0, lookRotation.z, lookRotation.w);
             m_Rigidbody.rotation = Quaternion.Slerp(Quaternion.Euler(0, 0, m_Rigidbody.rotation),
-                                                  Quaternion.LookRotation(m_Rigidbody.velocity, transform.up),
+                                                  slerpB,
                                                   m_AerodynamicEffect * Time.deltaTime).eulerAngles.z;
         }
     }
