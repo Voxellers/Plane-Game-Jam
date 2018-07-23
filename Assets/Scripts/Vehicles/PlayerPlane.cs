@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class PlayerPlane : Plane {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public void Update()
+    {
+        if (transform.position.y >= 550f)
+        {
+            print("Danger Danger");
+        }
+        if(transform.position.y >= 650)
+        {
+            Destroy(gameObject);
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Wall")
+        {
+            Destroy(gameObject);
+        }
+    }
 }

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : MonoBehaviour {
+public class Gun : MonoBehaviour
+{
 
-    public GameObject Bullet;
-    public Transform Muzzle;
+    public GameObject bullet;
+    public Transform muzzle;
+    public ParticleSystem muzzleFlash;
     public float shootPower;
     //Per Second
     public float fireRate = 0.25f;
@@ -22,14 +24,16 @@ public class Gun : MonoBehaviour {
      **/
     public void PullTrigger()
     {
-        if(Time.time > lastShootTime + fireRate)
+        if (Time.time > lastShootTime + fireRate)
         {
-           var bullet=
-                Instantiate(Bullet, Muzzle.position,
-                Muzzle.rotation);
-           //bullet.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shootPower);
-           bullet.GetComponent<Rigidbody>().AddForce(Muzzle.forward * shootPower);
+            var inst =
+                 Instantiate(bullet, muzzle.position,
+                 muzzle.rotation);
+            //inst.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shootPower);
+            inst.GetComponent<Rigidbody>().AddForce(muzzle.forward * shootPower);
             lastShootTime = Time.time;
+            if (muzzleFlash != null)
+                muzzleFlash.Play();
         }
     }
 }

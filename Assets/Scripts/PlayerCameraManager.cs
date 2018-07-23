@@ -23,6 +23,12 @@ public class PlayerCameraManager : MonoBehaviour
     public Quaternion maxAngle = Quaternion.Euler(30,0,0);
     public Quaternion minAngle = Quaternion.Euler(0,0,0);
 
+    //카메라 엣지 디텍터
+    public Transform leftEdge;
+    public Transform rightEdge;
+    public Transform topEdge;
+    public Transform bottomEdge;
+
     // Use this for initialization
     void Start()
     {
@@ -36,15 +42,23 @@ public class PlayerCameraManager : MonoBehaviour
     //움직임 발생된 뒤에 따라가져야하니까?
     void LateUpdate()
     {
-        //확대축소 비율 구하기
-        float magnitude = maxHeight - targetTransform.position.y;
+        if (targetToFollow != null)
+        {
+            //확대축소 비율 구하기
+            float magnitude = maxHeight - targetTransform.position.y;
 
-        Vector3 newCameraPosition;
-        newCameraPosition = targetTransform.position;
-        newCameraPosition += GetCameraPositionTowardPlayersLookAt();
-        newCameraPosition += GetCameraOffsetByMagnitude(magnitude);
+            Vector3 newCameraPosition;
+            newCameraPosition = targetTransform.position;
+            newCameraPosition += GetCameraPositionTowardPlayersLookAt();
+            newCameraPosition += GetCameraOffsetByMagnitude(magnitude);
 
-        MoveCameraSmootly(GetCameraAngleByMagnitude(magnitude), newCameraPosition);
+            MoveCameraSmootly(GetCameraAngleByMagnitude(magnitude), newCameraPosition);
+
+           /* transform.position = new Vector3(
+                Mathf.Clamp(transform.position.x, leftEdge.position.x, rightEdge.position.x),
+                Mathf.Clamp(transform.position.y, bottomEdge.position.y, topEdge.position.y),
+                transform.position.z);*/
+        }
     }
 
     Vector3 GetCameraPositionTowardPlayersLookAt()
