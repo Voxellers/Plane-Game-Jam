@@ -23,12 +23,6 @@ public class PlayerCameraManager : MonoBehaviour
     public Quaternion maxAngle = Quaternion.Euler(30,0,0);
     public Quaternion minAngle = Quaternion.Euler(0,0,0);
 
-    //카메라 엣지 디텍터
-    public Transform leftEdge;
-    public Transform rightEdge;
-    public Transform topEdge;
-    public Transform bottomEdge;
-
     // Use this for initialization
     void Start()
     {
@@ -53,11 +47,6 @@ public class PlayerCameraManager : MonoBehaviour
             newCameraPosition += GetCameraOffsetByMagnitude(magnitude);
 
             MoveCameraSmootly(GetCameraAngleByMagnitude(magnitude), newCameraPosition);
-
-           /* transform.position = new Vector3(
-                Mathf.Clamp(transform.position.x, leftEdge.position.x, rightEdge.position.x),
-                Mathf.Clamp(transform.position.y, bottomEdge.position.y, topEdge.position.y),
-                transform.position.z);*/
         }
     }
 

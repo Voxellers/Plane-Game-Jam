@@ -6,8 +6,6 @@ public abstract class Plane : Alive {
 
     [SerializeField] private float firstDangerPercent;
     [SerializeField] private float secondDangerPercent;
-    private bool isFirstSmokeOn = false;
-    private bool isSecondSmokeOn = false;
     public ParticleSystem firstSmoke;
     public ParticleSystem secondSmoke;
 

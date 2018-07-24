@@ -15,9 +15,9 @@ public class PlayerPlane : Plane {
             Destroy(gameObject);
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Wall")
+        if(other.gameObject.CompareTag("Wall"))
         {
             Destroy(gameObject);
         }

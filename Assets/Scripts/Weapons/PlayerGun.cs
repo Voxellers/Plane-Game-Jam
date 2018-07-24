@@ -2,29 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : MonoBehaviour
-{
+public class PlayerGun : Gun {
 
-    public GameObject bullet;
-    public Transform muzzle;
-    public ParticleSystem muzzleFlash;
-    public AudioSource fireSound;
-    public AudioClip fireSoundClip;
-    public float shootPower;
-    //Per Second
-    public float fireRate = 0.25f;
-    protected float lastShootTime;
+    [SerializeField] private CameraShake cameraShake;
 
-    protected void Start()
+    private  void Start()
     {
-        lastShootTime = Time.time;
+        base.Start();
+        cameraShake = FindObjectOfType<CameraShake>().GetComponent<CameraShake>();
     }
-    /**
-     * Pull Trigger to shoot bullet.
-     * we don't know it will work but anyway we trigger.
-     * Check fire rate, and shoot it its right.
-     **/
-    public virtual void PullTrigger()
+
+    public override void PullTrigger()
     {
         if (Time.time > lastShootTime + fireRate)
         {
@@ -41,6 +29,7 @@ public class Gun : MonoBehaviour
                 fireSound.pitch = Random.Range(0.75f, 1);
                 fireSound.PlayOneShot(fireSoundClip);
             }
+            cameraShake.StartCoroutine(cameraShake.Shake());
         }
     }
 }

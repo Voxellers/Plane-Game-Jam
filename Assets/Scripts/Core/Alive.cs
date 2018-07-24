@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Alive : MonoBehaviour
+public class Alive : VoxObject
 {
 
     [SerializeField] private float healthPoint = 0f;
+    public ParticleSystem deadParticle;
+
     //최대 헬스 포인트는 아이템등에 의해 변할 수 있으므로 public 함.
     public float maxHealthPoint = 100f;
     public bool isFullHealthOnStart = true;
@@ -30,9 +32,11 @@ public class Alive : MonoBehaviour
      * */
     protected virtual void EventByDesiredHealthPoint(float hp)
     {
+        if (hp <= 0)
         {
-            if (hp <= 0)
-                Destroy(gameObject);
+            var particle = Instantiate(deadParticle,transform.position,transform.rotation);
+            particle.Play();
+            Destroy(gameObject);
         }
     }
 }

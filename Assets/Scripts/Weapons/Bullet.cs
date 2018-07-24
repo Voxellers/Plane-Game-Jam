@@ -14,14 +14,16 @@ public class Bullet : MonoBehaviour {
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == targetTag)
+        if (collision.gameObject.CompareTag(targetTag))
         {
             var hpScript = collision.gameObject.GetComponent<Alive>();
             var hp = hpScript.GetHP();
             collision.gameObject.GetComponent<Alive>().SetHP(hp - damage);
             Destroy(gameObject);
         }
-        else if (collision.gameObject.tag == "Wall")
-            Destroy(gameObject);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Wall")) Destroy(gameObject);
     }
 }

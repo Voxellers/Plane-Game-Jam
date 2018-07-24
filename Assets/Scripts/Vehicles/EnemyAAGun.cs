@@ -29,7 +29,9 @@ public class EnemyAAGun : Gun
                 Debug.DrawRay(transform.position, transform.forward * fireRange, Color.red);
 
                 // Move our position a step closer to the target.
-                transform.rotation = Quaternion.LookRotation(newDir);
+                Quaternion lookAt = Quaternion.LookRotation(newDir);
+                //lookAt = Quaternion.Euler(Mathf.Clamp(lookAt.x, 0, -180), lookAt.y, lookAt.z);
+                transform.rotation = lookAt;
                 RaycastHit hit;
                 if (Physics.Raycast(muzzle.transform.position, muzzle.transform.TransformDirection(Vector3.forward), out hit, fireRange))
                 {
