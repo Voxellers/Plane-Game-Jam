@@ -26,9 +26,7 @@ public class EnemyTruck : Alive {
         {
             float distance = Vector3.Distance(transform.position, gun.target.transform.position);
             if(distance <= siegeRange)
-            {
                 isSieged = true;
-            }
         }
         if(!isSieged)
         transform.position = transform.position + transform.forward *forwardSpeed* direction * Time.deltaTime;

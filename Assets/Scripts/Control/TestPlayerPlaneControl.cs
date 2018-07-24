@@ -2,20 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestControlPlane : MonoBehaviour {
-
-    public float forwardSpeed = 10f;
-    public float rotateSpeed = 10f;
-    public Gun playerGun;
+public class TestPlayerPlaneControl : TestPlaneControl
+{
     float axisValue;
 
     // Update is called once per frame
     void Update () {
         if(Input.GetButton("Fire1"))
         {
-            playerGun.PullTrigger();
+            PullTrigger();
         }
-        transform.position = transform.position + transform.forward *forwardSpeed* Time.deltaTime;
+
+        MoveForward();
 
         axisValue = Input.GetAxis("Vertical");
         transform.Rotate(axisValue * rotateSpeed * Time.deltaTime, 0, 0, Space.Self);
