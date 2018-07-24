@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
+    public bool cameraShakeOnGunFire = true;
+
 	// Use this for initialization
 	void Start () {
 		

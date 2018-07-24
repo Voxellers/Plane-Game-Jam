@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour {
     public float duration = 0.25f;
-    public float speed = 1.0f;
     public float magnitude = 0.1f;
 
     public IEnumerator Shake()
@@ -26,7 +25,7 @@ public class CameraShake : MonoBehaviour {
             x *= magnitude * damper;
             z *= magnitude * damper;
 
-            transform.position += new Vector3(0, 0, z);
+            transform.position += new Vector3(x, z, 0);
 
             yield return null;
         }

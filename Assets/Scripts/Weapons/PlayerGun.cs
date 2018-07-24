@@ -5,10 +5,11 @@ using UnityEngine;
 public class PlayerGun : Gun {
 
     [SerializeField] private CameraShake cameraShake;
-
+    private GameManager gameManager;
     private  void Start()
     {
         base.Start();
+        gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>();
         cameraShake = FindObjectOfType<CameraShake>().GetComponent<CameraShake>();
     }
 
@@ -29,6 +30,7 @@ public class PlayerGun : Gun {
                 fireSound.pitch = Random.Range(0.75f, 1);
                 fireSound.PlayOneShot(fireSoundClip);
             }
+            if(gameManager.cameraShakeOnGunFire)
             cameraShake.StartCoroutine(cameraShake.Shake());
         }
     }
